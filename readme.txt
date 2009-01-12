@@ -3,7 +3,7 @@ Contributors: rzamana
 Tags: widget, blogroll, widgets, multiple
 Requires at least: 2.6
 Tested up to: 2.7
-Stable tag: 0.1
+Stable tag: 1.1
 
 Use more than 1 blogroll in your site, divide in categories as well
 
@@ -14,6 +14,9 @@ Using a combination of plugins "Custom Field Widget" from Scott Allan Wallick an
 Use how manys blogroll do you want in your site, and put everything your place.
 
 Just put the name of link category that you like to show, and then everything is ready.
+
+Version 1.1
+ -- Corrected the order of links. Instead of "RAND()" will use the "name ASC"
 
 == Installation ==
 
