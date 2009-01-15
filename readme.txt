@@ -3,7 +3,7 @@ Contributors: rzamana
 Tags: widget, blogroll, widgets, multiple
 Requires at least: 2.6
 Tested up to: 2.7
-Stable tag: 0.1
+Stable tag: 1.0
 
 Use more than 1 blogroll in your site, divide in categories as well
 
