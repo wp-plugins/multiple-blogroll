@@ -4,7 +4,7 @@ Plugin Name: Multiple Blogroll
 Plugin URI: http://www.zamana.eti.br/blog/2008/12/multiple-blogroll-wordpress-plugin/
 Description: With this you can put more than 1 blogroll widget, and separate with the categories
 Author: RZamana
-Version: 0.1
+Version: 1.2
 Author URI: http://zamana.eti.br
 */
 //Front-end shows
@@ -45,8 +45,6 @@ function wp_widget_multiple_blogroll( $args, $widget_args = 1 ) {
       $mtbr_link_image = $mtbr_link->link_image;
       $mtbr_link_target = $mtbr_link->link_target;
       $mtbr_link_rel = $mtbr_link->link_rel;
-
-
       echo '<li><a';
       if ($mtbr_link_target){
         echo ' target="'.$mtbr_link_target.'"';}
@@ -65,7 +63,6 @@ function wp_widget_multiple_blogroll( $args, $widget_args = 1 ) {
 function wp_widget_multiple_blogroll_control($widget_args) {
 	// Establishes what widgets are registered, i.e., in use
 	global $wp_registered_widgets;
-  //exit(print_r($wp_registered_widgets,true));
 	// We shouldn't update, i.e., process $_POST, if we haven't updated
 	static $updated = false;
 	// Our widgets are stored with a numeric ID, process them as such
@@ -95,7 +92,10 @@ function wp_widget_multiple_blogroll_control($widget_args) {
 		// We must store each widget by ID in the sidebar where it was saved
 		foreach ( $this_sidebar as $_widget_id ) {
 			// Process options only if from a Widgets submenu $_POST
-			if ( 'widget_multiple_blogroll' == $wp_registered_widgets[$_widget_id]['callback'] && isset($wp_registered_widgets[$_widget_id]['params'][0]['number']) ) {
+			if ( 
+        'wp_widget_multiple_blogroll' == $wp_registered_widgets[$_widget_id]['callback'] && 
+        isset($wp_registered_widgets[$_widget_id]['params'][0]['number']) 
+      ) {
 				// Set the array for the widget ID/options
 				$widget_number = $wp_registered_widgets[$_widget_id]['params'][0]['number'];
 				// If we have submitted empty data, don't store it in an array.
@@ -106,7 +106,8 @@ function wp_widget_multiple_blogroll_control($widget_args) {
 		// If we are returning data via $_POST for updated widget options, save for each widget by widget ID
 		foreach ( (array) $_POST['widget-multiple-blogroll'] as $widget_number => $widget_multiple_blogroll ) {
 			// If the $_POST data has values for our widget, we'll save them
-			if (isset($options[$widget_number]) )
+      #print '<pre>'.print_r(array($options[$widget_number]),true).'</pre>';die();
+			if (!isset($options[$widget_number]) )
 				continue;
 			// Create variables from $_POST data to save as array below
 			$title = strip_tags(stripslashes($widget_multiple_blogroll['title']));
